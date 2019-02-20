@@ -1,50 +1,84 @@
-.App {
-  text-align: center;
+.todo-wrapper{
+  width: 335px;
+  margin: 200px;
+  font-family: 'Inter';
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.create-todo{
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+}
+
+.create-todo-input{
+  border: 0;
+  outline: none;
+  background-color: #F3F3F3;
+  width: 290px;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 11px 10px;
+  font-size: 14px;
+  color: #858383;
+}
+
+.create-todo-button{
+  width: 40px;
+  height: 40px;
   color: white;
+  border: 0;
+  background-color: black;
 }
 
-.App-link {
-  color: #61dafb;
+.task-wrapper{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  padding-left: 10px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  background-color: #F3F3F3;
 }
 
-.create-todo input{
-  border: 1px solid rgba(0,0,0,0.1);
-}
-
-input{
+.task-done-button{
+  width: 28px;
+  height: 28px;
+  border-radius: 100px;
   border: 0;
   outline: none;
 }
 
-.task-completed{
+.task-done-button-state{
+  background-color: green;
+}
+
+.task-name{
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.task-done{
   text-decoration: line-through;
 }
 
-.todo-item{
-  display: flex;
+.task-delete-button{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #DA2F2F;
+  border: 0;
+  outline: none;
+  right: 0;
+  color: white;
+  font-size: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.task-editing{
+  margin-left: 10px;
+  font-size: 14.6px;
+  border: 0;
+  outline: none;
+  background-color: #F3F3F3;
 }

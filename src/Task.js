@@ -4,7 +4,7 @@ import TaskEditing from './TaskEditing'
 
 export default (props) => {
   if (props.todo.editing === true) {
-    return <TaskEditing {...props}/>
+    return <TaskEditing {...props} />
   }
   else
     return <Task {...props} />
@@ -12,11 +12,21 @@ export default (props) => {
 
 const Task = ({ todo, onDeleteTask, onCompleteTask, activateEdit }) =>
 
-  <div>
-    <span className={todo.completed? "task-completed" : " "}
+  <div className='task-wrapper'>
+    <button
+      className={todo.completed ? "task-done-button task-done-button-state" : "task-done-button"}
+      onClick={onCompleteTask.bind(null, todo.id)}
+    ></button>
+
+    <span className={todo.completed ? "task-name task-done" : "task-name"}
       onClick={activateEdit.bind(null, todo.id)}>
       {todo.task}
     </span>
-    <button onClick={onDeleteTask.bind(null, todo.id)}>X</button>
-    <button onClick={onCompleteTask.bind(null, todo.id)}>OK</button>
+
+    <button
+      className='task-delete-button'
+      onClick={onDeleteTask.bind(null, todo.id)}
+    >
+      -
+    </button>
   </div>

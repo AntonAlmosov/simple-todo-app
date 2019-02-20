@@ -38,6 +38,13 @@ class App extends Component {
     }
   }
 
+  createTaskOnEnter = (value, e) => {
+    if (e.key === 'Enter'){
+      this.createTask(value)
+      e.target.value = '';
+    }
+  }
+
   deleteTask = (id) => {
     this.setState({ todos: this.state.todos.filter(todo => todo.id !== id) })
   }
@@ -90,8 +97,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="todoApp">
-        <CreateTodo createTodo={this.createTask} />
+      <div className="todo-wrapper">
+        <CreateTodo
+          handleEnter={this.createTaskOnEnter}
+          createTodo={this.createTask} />
         <Tasks todos={this.state.todos}
           onDeleteTask={this.deleteTask}
           onCompleteTask={this.completeTask}
