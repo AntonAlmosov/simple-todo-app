@@ -26,44 +26,65 @@ class App extends Component {
   }
 
   createTask = (value) => {
-    const newTask = {
-      id: uuid.v4(),
-      task: value,
-      completed: false
+    if(value !== ""){
+      const newTask = {
+        id: uuid.v4(),
+        task: value,
+        completed: false
+      }
+      this.setState({
+        todos: [...this.state.todos, newTask]
+      })
     }
-    this.setState({
-      todos: [...this.state.todos, newTask]
-    })
   }
 
   deleteTask = (id) => {
     this.setState({ todos: this.state.todos.filter(todo => todo.id !== id) })
   }
 
-  editTask = (id, value) => {
-    this.setState({todos: this.state.todos.map(todo => {
-      if(todo.id === id)
-        return {
-        id: todo.id,
-        task: value,
-        completed: todo.completed
-      }
-      return todo
-    })
-  })
-  }
-
-  completeTask = (id) => {
+  editTask = (id, e) => {
     this.setState({
       todos: this.state.todos.map(todo => {
         if (todo.id === id)
           return {
             id: todo.id,
-            task: todo.task,
-            completed: true
+            task: e.target.value,
+            completed: todo.completed,
+            editing: false
           }
-          return todo
+        return todo
       })
+    })
+  }
+
+  completeTask = (id) => {
+      this.setState({
+        todos: this.state.todos.map(todo => {
+          if (todo.id === id && !todo.completed)
+            return {
+              id: todo.id,
+              task: todo.task,
+              completed: true
+            }
+          else if (todo.id === id)
+            return {
+              id: todo.id,
+              task: todo.task,
+              completed: false
+            }
+          return todo
+        })
+      })
+  }
+
+  activateEdit = (id) =>{
+    this.setState({
+        todos: this.state.todos.map(todo => {
+          if(todo.id === id){
+            todo.editing = true;
+          }
+          return todo;
+        })
     })
   }
 
@@ -74,7 +95,8 @@ class App extends Component {
         <Tasks todos={this.state.todos}
           onDeleteTask={this.deleteTask}
           onCompleteTask={this.completeTask}
-          onEdit={this.editTask}/>
+          onEdit={this.editTask}
+          activateEdit={this.activateEdit} />
       </div>
     )
   }

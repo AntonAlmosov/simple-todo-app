@@ -23,6 +23,15 @@
   color: #61dafb;
 }
 
+.create-todo input{
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+input{
+  border: 0;
+  outline: none;
+}
+
 .task-completed{
   text-decoration: line-through;
 }
